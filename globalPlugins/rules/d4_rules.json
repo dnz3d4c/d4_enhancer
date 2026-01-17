@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "rules": {
+    "ignore": [
+      {
+        "id": "empty_string",
+        "pattern": "^$",
+        "type": "regex",
+        "description": "빈 문자열 무시"
+      },
+      {
+        "id": "whitespace_only",
+        "pattern": "^\\s+$",
+        "type": "regex",
+        "description": "공백만 있는 문자열 무시"
+      }
+    ],
+    "replace": [],
+    "priority": []
+  }
+}

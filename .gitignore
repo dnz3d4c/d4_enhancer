@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Build
+dist/
+*.nvda-addon
+
+# Logs
+*.log
+logs/
+
+# Claude 로컬 설정
+.claude/settings.local.json
+
+# IDE
+.vscode/
+.idea/
