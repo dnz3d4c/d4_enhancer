@@ -37,10 +37,10 @@ def build():
         # Add manifest.ini
         zf.write(manifest, "manifest.ini")
 
-        # Add globalPlugins/ (recursive)
+        # Add globalPlugins/ (recursive, excluding CLAUDE.md)
         global_plugins = root / "globalPlugins"
         for file in global_plugins.rglob("*"):
-            if file.is_file():
+            if file.is_file() and file.name != "CLAUDE.md":
                 arcname = file.relative_to(root)
                 zf.write(file, arcname)
 
