@@ -1,3 +1,8 @@
+---
+name: tts
+description: D4GameEnhancer.log 분석하여 TTS 패턴 빈도 측정 후 docs/SPEECH_PATTERNS.md 업데이트
+---
+
 # /tts
 
 TTS 로그 분석 후 패턴 문서 업데이트.
