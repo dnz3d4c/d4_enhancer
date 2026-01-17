@@ -15,6 +15,8 @@ from scriptHandler import script
 
 from .d4_rule_engine import RuleEngine
 
+MAX_LOG_SIZE = 10 * 1024 * 1024  # 10MB
+
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     scriptCategory = "D4GameEnhancer"
@@ -39,6 +41,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self.logfile.close()
         return super().terminate(self)
 
+    def _check_log_size(self):
+        """10MB 초과 시 로그 파일 삭제 후 재생성"""
+        if self.logfile.closed:
+            return
+        self.logfile.flush()
+        log_path = pathlib.Path(self.logfile.name)
+        if log_path.exists() and log_path.stat().st_size > MAX_LOG_SIZE:
+            self.logfile.close()
+            log_path.unlink()
+            self.logfile = open(log_path, "a", encoding="UTF-8")
+
     def processText(self, text):
         focus = api.getFocusObject()
         if focus.sleepMode == focus.SLEEP_FULL:
@@ -50,12 +63,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         # ignore 규칙 매칭 시 발화 취소
         if processed is None:
             if self.logging_is_enabled:
+                self._check_log_size()
                 self.logfile.write(f"[IGNORED] {repr(text)}\n")
                 self.logfile.flush()
             return 0
 
         # 로깅
         if self.logging_is_enabled:
+            self._check_log_size()
             self.logfile.write(f"[RAW] {repr(text)}\n")
             self.logfile.flush()
 
