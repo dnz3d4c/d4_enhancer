@@ -22,8 +22,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.logging_is_enabled = False
+        # 로그 파일: globalPlugins 상위(애드온 루트)에 저장
+        addon_root = pathlib.Path(__file__).parent.parent
         self.logfile = open(
-            pathlib.Path.home() / "D4GameEnhancer.log", "a", encoding="UTF-8"
+            addon_root / "D4GameEnhancer.log", "a", encoding="UTF-8"
         )
 
         # RuleEngine 초기화
