@@ -8,7 +8,7 @@
 
 # D4GameEnhancer
 
-디아블로 IV 게임을 NVDA 스크린 리더로 플레이할 수 있도록 개선하는 추가 기능.
+디아블로 IV를 NVDA 스크린 리더로 플레이할 수 있게 해주는 NVDA 추가 기능.
 
 ## 프로젝트 정보
 
@@ -20,8 +20,9 @@
 
 ## 현재 기능
 
-- TTS 후킹: 게임에서 발생하는 텍스트를 NVDA로 전달
-- 로깅 토글: NVDA+ALT+D로 디버그 로그 on/off (~에 D4GameEnhancer.log 생성)
+- TTS 후킹: 게임 텍스트를 NVDA로 전달
+- 규칙 엔진: 빈 문자열/공백 필터링 (rules/d4_rules.json)
+- 로깅 토글: NVDA+ALT+D (애드온 루트에 D4GameEnhancer.log 생성)
 
 ## 기술 스택
 
@@ -31,21 +32,25 @@
 
 ## API 문서
 
-NVDA 추가 기능 개발 참조: `C:/project/NVDAAddons/docs/NVDA_API_Reference.md`, `NVDA_API_Reference.json`
+NVDA 추가 기능 개발 참조: `C:/project/NVDAAddons/docs/NVDA_API_Reference.md`
 
 ## 디렉토리 구조
 
 ```
-globalPlugins/d4_game_enhancer.py  # 메인 플러그인
-scripts/build.py                   # 빌드 스크립트
-manifest.ini                       # 추가 기능 메타데이터
-dist/                              # 빌드 출력
+globalPlugins/
+├── d4_game_enhancer.py   # 메인 플러그인
+├── d4_rule_engine.py     # 규칙 엔진
+└── rules/
+    └── d4_rules.json     # 필터링 규칙
+scripts/build.py          # 빌드 스크립트
+manifest.ini              # 추가 기능 메타데이터
+dist/                     # 빌드 출력
 ```
 
 ## 빌드
 
 ```bash
-python scripts/build.py
+uv run python scripts/build.py
 # 결과: dist/D4GameEnhancer-vX.X.X.nvda-addon
 ```
 
