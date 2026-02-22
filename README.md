@@ -6,7 +6,7 @@
 
 ### 텍스트 다듬기
 
-디아블로 IV는 `nvdaController_speakText`를 써서 게임 텍스트를 NVDA에 보냅니다. 이 애드온은 그 텍스트를 가로채서 다듬은 뒤 NVDA로 넘깁니다.
+디아블로 IV는 게임 텍스트를 NVDA에 보냅니다. 이 애드온은 디아블로가 보낸 텍스트를 가로채 다듬은 뒤 NVDA로 전달합니다.
 
 - **빈 문자열/공백 필터링** — 장비 속성, 던전 속성, 설정 항목 사이의 빈 줄을 걸러서 끊김 없이 읽어줌
 - **HTML 엔티티 디코딩** — `&lt;`, `&gt;`, `&quot;`, `&apos;` 같은 HTML 엔티티를 실제 문자로 변환
@@ -14,7 +14,7 @@
 
 ### 메시지 모니터링
 
-`NVDA+ALT+D`로 켜고 끕니다. 게임이 읽어주는 모든 텍스트를 `D4GameEnhancer.log`에 기록합니다. 10MB 넘으면 자동으로 비웁니다.
+`NVDA+ALT+D`로 켜고 끕니다. 게임에서 나오는 모든 텍스트를 `D4GameEnhancer.log`에 기록합니다. 로그가 10MB를 넘으면 자동으로 비웁니다.
 
 ## 요구 사항
 
@@ -24,7 +24,7 @@
 ## 설치
 
 1. [Releases](https://github.com/dnz3d4c/d4_enhancer/releases)에서 `.nvda-addon` 다운로드
-2. 파일 실행하면 NVDA가 설치 안내
+2. 다운로드한 파일을 실행하면 NVDA가 설치를 안내합니다
 
 ## 단축키
 
@@ -43,8 +43,8 @@
 
 `globalPlugins/rules/d4_rules.json`에서 규칙을 편집할 수 있습니다.
 
-- **ignore** — 맞는 텍스트를 읽지 않음 (정규식, 정확히 일치, 포함)
-- **replace** — 맞는 텍스트를 바꿈 (정규식, 정확히 일치)
+- **ignore** — 조건에 맞는 텍스트를 읽지 않음 (정규식, 정확히 일치, 포함)
+- **replace** — 조건에 맞는 텍스트를 바꿈 (정규식, 정확히 일치)
 
 ```json
 {
@@ -63,7 +63,7 @@
 uv run python scripts/build.py
 ```
 
-`dist/D4GameEnhancer-v0.1.0.nvda-addon`에 생성됩니다.
+빌드하면 `dist/D4GameEnhancer-v0.1.0.nvda-addon`이 만들어집니다.
 
 ## 라이선스
 
