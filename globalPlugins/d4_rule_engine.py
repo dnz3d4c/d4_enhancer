@@ -1,6 +1,7 @@
 # D4GameEnhancer - Rule Engine
 # TTS 텍스트 필터링 규칙 엔진
 
+import html
 import json
 import pathlib
 import re
@@ -59,8 +60,10 @@ class RuleEngine:
                 meta["matched_rule"] = rule["id"]
                 return (None, meta)
 
-        # 2. replace 규칙 적용
-        processed = text
+        # 2. HTML 엔티티 디코딩
+        processed = html.unescape(text)
+
+        # 3. replace 규칙 적용
         for rule in self.rules.get("rules", {}).get("replace", []):
             processed = self._apply_replace(processed, rule)
 

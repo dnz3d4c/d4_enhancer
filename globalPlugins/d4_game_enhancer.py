@@ -78,11 +78,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         return 0
 
     @script(
-        description="Enables or disables logging",
+        description="디아블로 IV의 메시지 모니터링을 켜거나 끕니다",
         gesture="KB:NVDA+ALT+d"
     )
     def script_toggle_logging(self, gesture):
         self.logging_is_enabled = not self.logging_is_enabled
         ui.message(
-            f"Logging {'enabled' if self.logging_is_enabled else 'disabled'}"
+            f"메시지 모니터링 {'켬' if self.logging_is_enabled else '끔'}"
         )
